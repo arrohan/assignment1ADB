@@ -7,4 +7,6 @@ def hello():
 
 @app.route("/takedata",methods=["POST","GET"])
 def search():
-	return "Hello"
+	name = request.form.get("Search Bar")
+
+	return render_template("index.html", value=name)
