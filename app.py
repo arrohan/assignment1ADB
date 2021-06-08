@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def hello():
 	return render_template('index.html')
 
-@app.route("/takedata",methods=["POST","GET"])
+@app.route('/takedata',methods=["POST","GET"])
 def search():
-	return render_template("page.html")
+	return render_template('page.html')
