@@ -48,4 +48,7 @@ def updatedata():
 			items[4] = room
 			items[5] = telnum
 			items[7] = keywords
-	return render_template('search.html',dict=data)
+	with open("people.csv",'w') as csvfile:
+		csvwrite = csv.writer(csvfile)
+		csvwrite.writerow(data)
+	return render_template('index.html',dict=data)
