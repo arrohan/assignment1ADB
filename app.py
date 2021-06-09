@@ -30,3 +30,22 @@ def saldata():
 		if (salary < sal):
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
+
+@app.route('/update',methods=["POST","GET"])
+def updatedata():	
+	name = request.form.get("name")
+	state = request.form.get("state")
+	salary = request.form.get("salary")
+	grade = request.form.get("grade")
+	room = request.form.get("room")
+	telnum = request.form.get("telnum")
+	keywords = request.form.get("keywords")
+	for items in data:
+		if(items[0] == name):
+			items[1] = state 
+			items[2] = salary
+			items[3] = grade
+			items[4] = room
+			items[5] = telnum
+			items[7] = keywords
+	return render_template('search.html',dict=data)

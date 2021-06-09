@@ -6,27 +6,30 @@
            <img style="width: 200px;height:200px;margin-left: 20%;" src="{{ url_for('static', filename=item[6]) }}" alt="No Image found"/>
            <br>
            <label style="margin-left: 20%;">Name:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[0]}}>
+           <input type="text" name="name" style="margin-left: 5%;" value={{item[0]}}>
            <br>
            <label style="margin-left: 20%;">State:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[1]}}>
+           <input type="text" name="state" style="margin-left: 5%;" value={{item[1]}}>
            <br>
            <label style="margin-left: 20%;">Salary:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[2]}}>
+           <input type="text" name="salary" style="margin-left: 5%;" value={{item[2]}}>
            <br>
            <label style="margin-left: 20%;">Grade:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[3]}}>
+           <input type="text" name="grade" style="margin-left: 5%;" value={{item[3]}}>
            <br>
            <label style="margin-left: 20%;">Room:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[4]}}>
+           <input type="text" name="room" style="margin-left: 5%;" value={{item[4]}}>
            <br>
            <label style="margin-left: 20%;">Telnum:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[5]}}>
+           <input type="text" name="telnum" style="margin-left: 5%;" value={{item[5]}}>
            <br>
            <label style="margin-left: 20%;">Keywords:     </label> 
-           <input type="text" style="margin-left: 5%;" value={{item[7]}}>
+           <input type="text" name="keywords" style="margin-left: 5%;" value={{item[7]}}>
            <br>
            <br>
+           <form action="/update", method="POST" , method = "GET">
+            <input type="submit" id="button" style="margin-left: 200%;width: 10%;" value="Update"/>
+        </form>
            <br>
            <br>
         {% endif %}
