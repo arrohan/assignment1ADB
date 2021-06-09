@@ -3,8 +3,8 @@
     <h1>All details</h1>
     {% for item in dict%}
     {{ imgsrc = "Images/"+{{item[6]}}}
-            <img src="{{'Images/'+ item[6]}}" alt="No Image Found">
-            <br>
+           {{item[6]}}
+           <br>
            <label style="margin-left: 20%;">Name:     </label> 
            <input type="text" style="margin-left: 5%;" value={{item[0]}}>
            <br>
