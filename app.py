@@ -12,7 +12,7 @@ def hello():
 def search():	
 	return render_template('alldata.html',dict=data)
 
-@app.route('/searchdata',methods=["POST","GET"])
+@app.route('/takedata',methods=["POST","GET"])
 def searchdata():
 	name = request.form.get("SearchBar")
 	return render_template('search.html',dict=data, name=name)
