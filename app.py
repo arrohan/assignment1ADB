@@ -1,17 +1,28 @@
 from flask import Flask, render_template, request
+from azure.storage.blob import BlockBlobService
 import pandas as pd
 import numpy as np
 import csv
 app = Flask(__name__)
+
+account_name = "rxa5014storage"
+account_key = "Apk1DlIhjJKIlodD/KDtAryxBYORJ48bfuLL05azxOa0J5r0Jesaa7Wt3XRwZdpCDePGrE0WWFk1rDapwI74UA=="
+top_level_container_name = "images"
 
 df = pd.read_csv('people.csv')
 df1=df.replace(np.nan,"",regex=True)
 
 data = df1.values.tolist()
 
-@app.route('/')
+fileNames = []
+
+@app.route('/', methods=["POST","GET"])
 def hello():
-	return render_template('index.html')
+	blob_service = BlockBlobService(account_name, account_key)
+	generator = blob_service.list_blobs(top_level_container_name)
+	for blob in generator:
+		fileNames.append(blob.name)
+	return render_template('index.html',fileNames=fileNames)
 
 @app.route('/alldata',methods=["POST","GET"])
 def search():	

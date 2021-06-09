@@ -28,5 +28,8 @@
         <form action="/alldata", method="POST" , method = "GET">
             <input type="submit" id="button" style="margin-left: 10%;width: 10%;" value="Show all Data"/>
         </form>
+        {%for items in fileNames%}
+        <label>items</label><br>
+        {% endfor %}
     </body>
 </html>
