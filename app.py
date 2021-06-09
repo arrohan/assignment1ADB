@@ -23,6 +23,6 @@ def saldata():
 	people=[]
 	sal = request.form.get("salBar")
 	for items in data:
-		if int(items[6]) > int(sal):
+		if int(items[2]) > int(sal):
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
