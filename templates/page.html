@@ -2,7 +2,10 @@
 <body>
     <h1>Hello</h1>
     {% for item in dict%}
-            {{ item[1] }}
+           <label style="margin-left: 20%;">Name:     </label> 
+           <input type="text" style="margin-left: 5%;" value={{item[0]}}/>
+           <br>
+           <br>
     {% endfor%}
 </body>   
 </html>
