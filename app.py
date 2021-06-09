@@ -1,8 +1,13 @@
 from flask import Flask, render_template, request
+import pandas as pd
+import numpy as np
 import csv
 app = Flask(__name__)
 
-data = list(csv.reader(open('people.csv')))
+df = pd.read_csv('people.csv')
+df1=df.replace(np.nan,"",regex=True)
+
+data = df1.values.tolist()
 
 @app.route('/')
 def hello():
@@ -40,14 +45,16 @@ def updatedata():
 	room = request.form.get("room")
 	telnum = request.form.get("telnum")
 	keywords = request.form.get("keywords")
+	counter = 0
 	for items in data:
-		if(items[0] == name):
-			items[1] = state 
-			items[2] = salary
-			items[3] = grade
-			items[4] = room
-			items[5] = telnum
-			items[7] = keywords
+		if(items[counter] == name):
+			df.loc[counter,'Name']=name
+			df.loc[counter,'State']=state
+			df.loc[counter,'Salary']=salary
+			df.loc[counter,'Grade']=grade
+			df.loc[counter,'Room']=room
+			df.loc[counter,'Telnum']=telnum
+			df.loc[counter,'Keywords']=keywords
 	with open("people.csv",'w') as csvfile:
 		csvwrite = csv.writer(csvfile)
 		csvwrite.writerow(data)
