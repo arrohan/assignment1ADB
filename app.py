@@ -18,15 +18,15 @@ fileNames = []
 
 @app.route('/', methods=["POST","GET"])
 def hello():
+	return render_template('index.html')
+
+@app.route('/alldata',methods=["POST","GET"])
+def search():	
 	blob_service = BlockBlobService(account_name, account_key)
 	generator = blob_service.list_blobs(top_level_container_name)
 	for blob in generator:
 		fileNames.append(blob.name)
-	return render_template('index.html',fileNames=fileNames)
-
-@app.route('/alldata',methods=["POST","GET"])
-def search():	
-	return render_template('alldata.html',dict=data)
+	return render_template('alldata.html',dict=data,fileNames=fileNames)
 
 @app.route('/takedata',methods=["POST","GET"])
 def searchdata():
