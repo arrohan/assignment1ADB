@@ -2,7 +2,6 @@
 <body>  
     <h1 style="text-align: center;">Details of a person who's salary greater than {{sal}}</h1>  
     {% for item in dict%}
-       {% if item[2] > sal %}
            <img style="width: 200px;height:200px;margin-left: 20%;" src="{{ url_for('static', filename=item[6]) }}" alt="No Image found"/>
            <br>
            <label style="margin-left: 20%;">Name:     </label> 
@@ -29,7 +28,6 @@
            <br>
            <br>
            <br>
-        {% endif %}
     {% endfor %}
 </body>   
 </html>
