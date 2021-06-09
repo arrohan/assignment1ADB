@@ -9,12 +9,12 @@ def hello():
 	return render_template('index.html')
 
 @app.route('/alldata',methods=["POST","GET"])
-def search():
-	name = request.form.get("SearchBar")
-	return render_template('search.html',dict=data, name=name)
+def search():	
+	return render_template('alldata.html',dict=data)
 
 @app.route('/searchdata',methods=["POST","GET"])
 def searchdata():
-	return render_template('alldata.html',dict=data)
+	name = request.form.get("SearchBar")
+	return render_template('search.html',dict=data, name=name)
 	
 
