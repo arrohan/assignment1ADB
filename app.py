@@ -24,8 +24,10 @@ def saldata():
 	sal = request.form.get("salBar")
 	sal = int(sal)
 	for items in data:
-		salary = items[2]
-		salary = int(salary)
+		salary = 0
+		if(items[2] != ''):
+			salary = items[2]
+			salary = int(salary)
 		if salary > sal:
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
