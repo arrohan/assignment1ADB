@@ -23,11 +23,11 @@ def searchdata():
 def saldata():
 	people=[]
 	sal = request.form.get("salBar")
-	sal = int(sal)
+	sal = float(sal)
 	for items in data:
 		salary = 0
 		if(items[2] != ''):
-			salary = int(re.search(r'\d+', items[2]).group())
+			salary = float(items[2])
 		if salary > sal:
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
