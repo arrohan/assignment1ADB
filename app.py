@@ -26,6 +26,6 @@ def saldata():
 	for items in data:
 		salary = items[2]
 		salary = int(salary)
-		if items[2] > sal:
+		if salary > sal:
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
