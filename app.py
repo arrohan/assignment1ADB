@@ -11,7 +11,7 @@ def hello():
 @app.route('/alldata',methods=["POST","GET"])
 def search():
 	name = request.form.get("SearchBar")
-	return render_template('alldata.html',dict=data, name=name)
+	return render_template('search.html',dict=data, name=name)
 
 @app.route('/searchdata',methods=["POST","GET"])
 def searchdata():
