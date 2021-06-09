@@ -1,5 +1,6 @@
 <html>
 <body>  
+    <form action="/update", method="POST" , method = "GET"></form>
     <h1 style="text-align: center;">Details of {{name}}</h1>  
     {% for item in dict%}
        {% if item[0] == name %}
@@ -26,12 +27,11 @@
            <label style="margin-left: 20%;">Keywords:     </label> 
            <input type="text" name="keywords" style="margin-left: 5%;" value={{item[7]}}>
            <br>
-           <br>
-           <form action="/update", method="POST" , method = "GET">
-            <input type="submit" id="button" style="margin-left: 200%;width: 10%;" value="Update">
-            </form>
+           <br>           
+            <input type="submit" id="button" style="margin-left: 200%;width: 10%;" value="Update">            
            <br>
            <br>
+        </form>
         {% endif %}
     {% endfor %}
 </body>   
