@@ -2,7 +2,7 @@
 <body>
     <h1>All details</h1>
     {% for item in dict%}
-           <img style="width: 200px;height:200px;margin-left: 20%;" src="{{url_for('static',filename='+{{item[6]}}+')}}" alt="No Image found"/>
+           <img style="width: 200px;height:200px;margin-left: 20%;" src="{{ url_for('static', filename=item[6]) }}" alt="No Image found"/>
            <br>
            <label style="margin-left: 20%;">Name:     </label> 
            <input type="text" style="margin-left: 5%;" value={{item[0]}}>
