@@ -10,6 +10,11 @@ def hello():
 
 @app.route('/alldata',methods=["POST","GET"])
 def search():
-	return render_template('page.html',dict=data)
+	name = request.form.get("SearchBar")
+	return render_template('alldata.html',dict=data, name=name)
+
+@app.route('/searchdata',methods=["POST","GET"])
+def searchdata():
+	return render_template('alldata.html',dict=data)
 	
 
