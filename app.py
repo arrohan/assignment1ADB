@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import re
 import csv
 app = Flask(__name__)
 
@@ -26,8 +27,7 @@ def saldata():
 	for items in data:
 		salary = 0
 		if(items[2] != ''):
-			salary = items[2]
-			salary = int(salary)
+			salary = int(re.search(r'\d+', items[2]).group())
 		if salary > sal:
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
