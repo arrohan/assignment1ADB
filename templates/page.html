@@ -1,5 +1,10 @@
 <html>
 <body>
     <h1>Hello</h1>
+    {% for item in dict%}
+        {% for item2 in item %}
+            {{ item2 }}
+        {% endfor %}
+    {% endfor%}
 </body>   
 </html>

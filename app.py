@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import csv
 app = Flask(__name__)
 
 @app.route('/')
@@ -7,4 +8,7 @@ def hello():
 
 @app.route('/takedata',methods=["POST","GET"])
 def search():
-	return render_template('page.html')
+	data = list(csv.reader(open('people.csv')))
+	return render_template('page.html',dict=data)
+	
+
