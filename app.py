@@ -55,7 +55,8 @@ def updatedata():
 			df.loc[counter,'Room']=room
 			df.loc[counter,'Telnum']=telnum
 			df.loc[counter,'Keywords']=keywords
-	with open("people.csv",'w') as csvfile:
-		csvwrite = csv.writer(csvfile)
-		csvwrite.writerow(data)
+			df.to_csv("people.csv",index=False)
+			break
+		counter+=1
+	
 	return render_template('index.html',dict=data)
