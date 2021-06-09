@@ -20,5 +20,13 @@ def searchdata():
 
 @app.route('/saldata',methods=["POST","GET"])
 def saldata():
+	people = []
 	sal = request.form.get("salBar")
-	return render_template('salbaseddata.html',dict=data, sal=sal)
+	sal = float(sal)
+	for items in data:
+		salary = 0
+		if(items[2] != "" and items[2] != " "):
+			salary = float(items[2])
+		if (salary < sal):
+			people.append(items)
+	return render_template('salbaseddata.html',dict=people, sal=sal)
