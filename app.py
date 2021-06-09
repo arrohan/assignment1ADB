@@ -18,3 +18,7 @@ def searchdata():
 	return render_template('search.html',dict=data, name=name)
 	
 
+@app.route('/saldata',methods=["POST","GET"])
+def searchdata():
+	sal = request.form.get("salBar")
+	return render_template('salbaseddata.html',dict=data, sal=sal)
