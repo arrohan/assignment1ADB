@@ -22,7 +22,10 @@ def searchdata():
 def saldata():
 	people=[]
 	sal = request.form.get("salBar")
+	sal = int(sal)
 	for items in data:
+		salary = items[2]
+		salary = int(salary)
 		if items[2] > sal:
 			people.append(items)
 	return render_template('salbaseddata.html',dict=people, sal=sal)
