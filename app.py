@@ -48,4 +48,4 @@ def updatedata():
 			items[4] = room
 			items[5] = telnum
 			items[7] = keywords
-	return render_template('search.html',dict=data)
+	return render_template('index.html',dict=data)
