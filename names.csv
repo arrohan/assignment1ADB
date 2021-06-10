@@ -1,5 +1,5 @@
 Name,Room,ID,State,Picture,Caption
-Alice,550,101,TX,a.jpg,Alice is still Alice not Aliz
+Alice,550.0,101,TX,a.jpg,Alice is still Alice not Aliz
 Farnaz,420,103,LA,h.jpg,Farnaz is very rich
 Bob,,99,TX,b.jpg,Bob who is Bob
 Dave,525,95,NN,,No one important

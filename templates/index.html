@@ -12,7 +12,7 @@
     </head>
     <body>
         <h2 style="text-align: center;">Rohan Alampalli Rajashekara</h2>
-        <h2 style="text-align: center;">ADB Assignment1</h2>
+        <h2 style="text-align: center;">Quiz 1</h2>
         <h3 style="text-align: center;">1001855014</h3>
         <br>
         <img src="https://rxa5014storage.blob.core.windows.net/quiz1/s.jpg" style="width: 200px; height: 200px; margin-left: 40%; margin-bottom: 10%;" alt="No Image found">
@@ -27,12 +27,11 @@
             <label id="labels" style="margin-left: 5%;">Max Room Number</label>
             <input type="text" id="searchBar" name="maxroom"/>
             <input type="submit" style="margin-left: 10%;width: 10%;" value="Search"/>
-            </form>
-        <form action="/alldata", method="POST" , method = "GET">
-            <input type="submit" id="button" style="margin-left: 10%;width: 10%;" value="Show all Data"/>
         </form>
-        <form action="/updatePicture", method="POST" , method = "GET">
-            <input type="submit" id="button" style="margin-left: 10%;width: 10%;" value="Upload an Image"/>
+        <form action="/searchname" , method = "POST", method="GET">
+            <label id="labels">Enter Name:</label>
+            <input type="text" id="SearchBar" name="SearchName"/>
+            <input type="submit" style="margin-left: 10%;width: 10%;" value="Search"/>
         </form>
     </body>
 </html>

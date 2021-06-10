@@ -40,18 +40,32 @@ def search():
 def searchdata():
 	people = []
 	df = pd.read_csv('names.csv')
+	print(df.head())
 	df1=df.replace(np.nan,"",regex=True)
 	data = df1.values.tolist()
 	id = request.form.get("SearchBar")
 	id = int(id)
 	for items in data:
+		print("hereeeeeee", items)
 		idno = 0
 		if(items[2] != "" and items[2] != " "):
+			print(items[2])
 			idno = int(items[2])
 		if(idno == id):
 			people.append(items)
 	return render_template('search.html',dict=people, id=id)
-	
+
+@app.route('/searchname',methods=["POST","GET"])
+def searchname():
+	people = []
+	df = pd.read_csv('names.csv')
+	df1=df.replace(np.nan,"",regex=True)
+	data = df1.values.tolist()
+	name = request.form.get("SearchName")
+	for items in data:
+		if(items[0] == name):
+			people.append(items)
+	return render_template('searchbyname.html',dict=people, id=name)
 
 @app.route('/roomdata',methods=["POST","GET"])
 def saldata():
@@ -79,11 +93,8 @@ def updatedata():
 	name = request.form.get("name")
 	print(name)
 	state = request.form.get("state")
-	salary = request.form.get("salary")
-	print(salary)
-	grade = request.form.get("grade")
 	room = request.form.get("room")
-	telnum = request.form.get("telnum")
+	id = request.form.get("id")
 	keywords = request.form.get("keywords")
 	with open(tempPath, mode='w') as csv_file:
 		linewriter=csv.writer(csv_file)
@@ -95,7 +106,7 @@ def updatedata():
 				if row['Name']==name:
 					print(row)
 					if(request.form['update'] == 'Update'):
-						linewriter.writerow([name,state,salary,grade,room,telnum,row['Picture'],keywords])
+						linewriter.writerow([name,room,id,state,row['Picture'],keywords])
 					else:
 						continue
 				else:
