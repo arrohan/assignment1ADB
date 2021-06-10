@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 import csv
 import numpy as np
@@ -16,8 +16,13 @@ df1=df.replace(np.nan,"",regex=True)
 data = df1.values.tolist()
 
 
+
 @app.route('/', methods=["POST","GET"])
 def hello():
+	return render_template('index.html')
+
+@app.route('/homepage', methods=["POST","GET"])
+def home():
 	return render_template('index.html')
 
 @app.route('/alldata',methods=["POST","GET"])
@@ -26,6 +31,9 @@ def search():
 
 @app.route('/takedata',methods=["POST","GET"])
 def searchdata():
+	df = pd.read_csv('people.csv')
+	df1=df.replace(np.nan,"",regex=True)
+	data = df1.values.tolist()
 	name = request.form.get("SearchBar")
 	return render_template('search.html',dict=data, name=name)
 	
@@ -68,4 +76,7 @@ def updatedata():
 					mywriter.writerow(row)
 	os.remove(path)
 	os.rename(tempPath,path)
+	df = pd.read_csv('people.csv')
+	df1=df.replace(np.nan,"",regex=True)
+	data = df1.values.tolist()
 	return render_template('index.html')
