@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 app = Flask(__name__)
 
-path="./static/people.csv"
-tempPath="./static/new.csv"
+path="./people.csv"
+tempPath="./new.csv"
  
 fieldnames=['Name','State','Salary','Grade','Room','Telnum','Picture','Keywords']
 
