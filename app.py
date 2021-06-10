@@ -27,6 +27,9 @@ def home():
 
 @app.route('/alldata',methods=["POST","GET"])
 def search():	
+	df = pd.read_csv('people.csv')
+	df1=df.replace(np.nan,"",regex=True)
+	data = df1.values.tolist()
 	return render_template('alldata.html',dict=data)
 
 @app.route('/takedata',methods=["POST","GET"])
@@ -40,6 +43,9 @@ def searchdata():
 
 @app.route('/saldata',methods=["POST","GET"])
 def saldata():
+	df = pd.read_csv('people.csv')
+	df1=df.replace(np.nan,"",regex=True)
+	data = df1.values.tolist()
 	people = []
 	sal = request.form.get("salBar")
 	sal = float(sal)
@@ -71,12 +77,13 @@ def updatedata():
 			for row in myreader:
 				if row['Name']==name:
 					print(row)
-					linewriter.writerow([name,state,salary,grade,room,telnum,row['Picture'],keywords])
+					if(request.form['update'] == 'Update'):
+						linewriter.writerow([name,state,salary,grade,room,telnum,row['Picture'],keywords])
+					else:
+						continue
 				else:
 					mywriter.writerow(row)
 	os.remove(path)
 	os.rename(tempPath,path)
-	df = pd.read_csv('people.csv')
-	df1=df.replace(np.nan,"",regex=True)
-	data = df1.values.tolist()
+
 	return render_template('index.html')
