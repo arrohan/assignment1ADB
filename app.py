@@ -7,12 +7,12 @@ import os
 import time
 app = Flask(__name__)
 
-path="./people.csv"
+path="./names.csv"
 tempPath="./new.csv"
  
-fieldnames=['Name','State','Salary','Grade','Room','Telnum','Picture','Keywords']
+fieldnames=['Name','Room','ID','State','Picture','Caption']
 
-df = pd.read_csv('people.csv')
+df = pd.read_csv('names.csv')
 df1=df.replace(np.nan,"",regex=True)
 
 data = df1.values.tolist()
@@ -38,28 +38,41 @@ def search():
 
 @app.route('/takedata',methods=["POST","GET"])
 def searchdata():
-	df = pd.read_csv('people.csv')
+	people = []
+	df = pd.read_csv('names.csv')
 	df1=df.replace(np.nan,"",regex=True)
 	data = df1.values.tolist()
-	name = request.form.get("SearchBar")
-	return render_template('search.html',dict=data, name=name)
+	id = request.form.get("SearchBar")
+	id = int(id)
+	for items in data:
+		idno = 0
+		if(items[2] != "" and items[2] != " "):
+			idno = int(items[2])
+		if(idno == id):
+			people.append(items)
+	return render_template('search.html',dict=people, id=id)
 	
 
-@app.route('/saldata',methods=["POST","GET"])
+@app.route('/roomdata',methods=["POST","GET"])
 def saldata():
-	df = pd.read_csv('people.csv')
+	df = pd.read_csv('names.csv')
 	df1=df.replace(np.nan,"",regex=True)
 	data = df1.values.tolist()
 	people = []
-	sal = request.form.get("salBar")
-	sal = float(sal)
+	min = request.form.get("minroom")
+	print(min)
+	max = request.form.get("maxroom")
+	min = int(min)
+	print(max)
+	max = int(max)
 	for items in data:
-		salary = 0
-		if(items[2] != "" and items[2] != " "):
-			salary = float(items[2])
-		if (salary < sal):
+		room = 0
+		if(items[1] != "" and items[1] != " "):
+			room = int(items[1])
+		if (room >= min and room <= max):
+			print(room)
 			people.append(items)
-	return render_template('salbaseddata.html',dict=people, sal=sal)
+	return render_template('salbaseddata.html',dict=people, max=max, min=min)
 
 @app.route('/update',methods=["POST","GET"])
 def updatedata():				

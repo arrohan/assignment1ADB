@@ -1,0 +1,20 @@
+Name,Room,ID,State,Picture,Caption
+Alice,550,101,TX,a.jpg,Alice is still Alice not Aliz
+Farnaz,420,103,LA,h.jpg,Farnaz is very rich
+Bob,,99,TX,b.jpg,Bob who is Bob
+Dave,525,95,NN,,No one important
+Khushboo,-1, ,CA,e.jpg,Khushboo is rich for now
+Eve,550,88,CA,e.jpg,Eve is eve is
+Zeke,520,80,,,Zeke is not here
+Jason,,97,TX, ,
+Tina,,,,r.jpg,
+Marnim,400,90,TX,,Marnim is smart and rich
+Dish,400,89,LA,,
+Tong,420,85,TX,t.jpg,Tong not Tang
+Mohit,302, ,NN,,
+Steve,900,80,,s.jpg,
+Lu,905,78,CA,,Lu is a different Lu a smarter Lu
+Mike,, ,TX,,
+Tang,808,105,,t.jpg,Tang great Tang
+Billy,50,42,CA,,
+Blue,,100,NN,l.jpg,Blue blue blue blue
