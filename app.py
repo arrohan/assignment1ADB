@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import pandas as pd
+import csv
 import numpy as np
+import os
 app = Flask(__name__)
 
 path="./people.csv"
@@ -44,24 +46,26 @@ def saldata():
 @app.route('/update',methods=["POST","GET"])
 def updatedata():	
 	name = request.form.get("name")
+	print(name)
 	state = request.form.get("state")
 	salary = request.form.get("salary")
+	print(salary)
 	grade = request.form.get("grade")
 	room = request.form.get("room")
 	telnum = request.form.get("telnum")
 	keywords = request.form.get("keywords")
- 	with open(tempPath, mode='w') as csv_file:
- 		linewriter=csv.writer(csv_file)
- 		mywriter=csv.DictWriter(csv_file,fieldnames=fieldnames)
- 		mywriter.writeheader()
- 		with open(path, mode='r') as csv_file:
- 			myreader = csv.DictReader(csv_file)
- 			for row in myreader:
- 				if row['Name']==name:
- 					linewriter.writerow([name,state,salary,grade,room,telnum,row['Picture'],keywords])
- 				else: 
- 					mywriter.writerow(row)
- 	os.remove(path)
- 	os.rename(tempPath,path)
- 
- 	return render_template('index.html')
+	with open(tempPath, mode='w') as csv_file:
+		linewriter=csv.writer(csv_file)
+		mywriter=csv.DictWriter(csv_file,fieldnames=fieldnames)
+		mywriter.writeheader()
+		with open(path, mode='r') as csv_file:
+			myreader = csv.DictReader(csv_file)
+			for row in myreader:
+				if row['Name']==name:
+					print(row)
+					linewriter.writerow([name,state,salary,grade,room,telnum,row['Picture'],keywords])
+				else:
+					mywriter.writerow(row)
+	os.remove(path)
+	os.rename(tempPath,path)
+	return render_template('index.html')
