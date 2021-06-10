@@ -3,7 +3,10 @@ import pandas as pd
 import numpy as np
 app = Flask(__name__)
 
-
+path="./static/people.csv"
+tempPath="./static/new.csv"
+ 
+fieldnames=['Name','State','Salary','Grade','Room','Telnum','Picture','Keywords']
 
 df = pd.read_csv('people.csv')
 df1=df.replace(np.nan,"",regex=True)
@@ -47,18 +50,18 @@ def updatedata():
 	room = request.form.get("room")
 	telnum = request.form.get("telnum")
 	keywords = request.form.get("keywords")
-	counter = 0
-	for items in data:
-		if(items[counter] == name):
-			df.loc[counter,'Name']=name
-			df.loc[counter,'State']=state
-			df.loc[counter,'Salary']=salary
-			df.loc[counter,'Grade']=grade
-			df.loc[counter,'Room']=room
-			df.loc[counter,'Telnum']=telnum
-			df.loc[counter,'Keywords']=keywords
-			df.to_csv("people.csv",index=False)
-			break
-		counter+=1
-	
-	return render_template('index.html',dict=data)
+ 	with open(tempPath, mode='w') as csv_file:
+ 		linewriter=csv.writer(csv_file)
+ 		mywriter=csv.DictWriter(csv_file,fieldnames=fieldnames)
+ 		mywriter.writeheader()
+ 		with open(path, mode='r') as csv_file:
+ 			myreader = csv.DictReader(csv_file)
+ 			for row in myreader:
+ 				if row['Name']==name:
+ 					linewriter.writerow([name,state,salary,grade,room,telnum,row['Picture'],keywords])
+ 				else: 
+ 					mywriter.writerow(row)
+ 	os.remove(path)
+ 	os.rename(tempPath,path)
+ 
+ 	return render_template('index.html')
