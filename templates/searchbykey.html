@@ -3,7 +3,7 @@
     <h2 style="text-align: center;">Rohan Alampalli Rajashekara</h2>
         <h2 style="text-align: center;">Quiz 1</h2>
         <h3 style="text-align: center;">1001855014</h3>
-    <h1 style="text-align: center;">Details of people living in the state {{state}}</h1>  
+    <h1 style="text-align: center;">Details of people who's captions have the key {{key}}</h1>  
     {% for item in dict%}
        <form action="/update", method="POST" , method = "GET">
             <br>
@@ -22,7 +22,6 @@
            <textarea rows="3" name="keywords" cols="50">{{item[4]}}</textarea>
            <br>
            <br>        
-              
             </form>        
            <br>
            <br>

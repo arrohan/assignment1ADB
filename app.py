@@ -10,7 +10,7 @@ app = Flask(__name__)
 path="./names.csv"
 tempPath="./new.csv"
  
-fieldnames=['Name','Room','ID','State','Picture','Caption']
+fieldnames=['Room','Name','State','Picture','Caption']
 
 df = pd.read_csv('names.csv')
 df1=df.replace(np.nan,"",regex=True)
@@ -43,29 +43,38 @@ def searchdata():
 	print(df.head())
 	df1=df.replace(np.nan,"",regex=True)
 	data = df1.values.tolist()
-	id = request.form.get("SearchBar")
-	id = int(id)
+	name = request.form.get("SearchBar")
 	for items in data:
-		print("hereeeeeee", items)
-		idno = 0
-		if(items[2] != "" and items[2] != " "):
-			print(items[2])
-			idno = int(items[2])
-		if(idno == id):
+		if(name == items[1]):
 			people.append(items)
-	return render_template('search.html',dict=people, id=id)
+	return render_template('search.html',dict=people, name=name)
 
-@app.route('/searchname',methods=["POST","GET"])
+@app.route('/searchstate',methods=["POST","GET"])
 def searchname():
 	people = []
 	df = pd.read_csv('names.csv')
 	df1=df.replace(np.nan,"",regex=True)
 	data = df1.values.tolist()
-	name = request.form.get("SearchName")
+	state = request.form.get("SearchName")
 	for items in data:
-		if(items[0] == name):
+		if(items[2] == state):
 			people.append(items)
-	return render_template('searchbyname.html',dict=people, id=name)
+	return render_template('searchbyname.html',dict=people, state=state)
+
+@app.route('/searchkey',methods=["POST","GET"])
+def searchkey():
+	people = []
+	df = pd.read_csv('names.csv')
+	df1=df.replace(np.nan,"",regex=True)
+	data = df1.values.tolist()
+	key = request.form.get("SearchKey")
+	for items in data:
+		if(key in items[4]):
+			print(key)
+			print(items[4])
+			people.append(items)
+	return render_template('searchbykey.html',dict=people, key=key)
+
 
 @app.route('/roomdata',methods=["POST","GET"])
 def saldata():
@@ -73,20 +82,15 @@ def saldata():
 	df1=df.replace(np.nan,"",regex=True)
 	data = df1.values.tolist()
 	people = []
-	min = request.form.get("minroom")
-	print(min)
-	max = request.form.get("maxroom")
-	min = int(min)
-	print(max)
-	max = int(max)
+	roomnum = request.form.get("roomnum")
+	roomnum = int(roomnum)
 	for items in data:
 		room = 0
-		if(items[1] != "" and items[1] != " "):
-			room = int(items[1])
-		if (room >= min and room <= max):
-			print(room)
+		if(items[0] != "" and items[0] != " "):
+			room = int(items[0])
+		if (room == roomnum):
 			people.append(items)
-	return render_template('salbaseddata.html',dict=people, max=max, min=min)
+	return render_template('salbaseddata.html',dict=people, roomnum=roomnum)
 
 @app.route('/update',methods=["POST","GET"])
 def updatedata():				
@@ -94,7 +98,6 @@ def updatedata():
 	print(name)
 	state = request.form.get("state")
 	room = request.form.get("room")
-	id = request.form.get("id")
 	keywords = request.form.get("keywords")
 	with open(tempPath, mode='w') as csv_file:
 		linewriter=csv.writer(csv_file)
@@ -106,7 +109,7 @@ def updatedata():
 				if row['Name']==name:
 					print(row)
 					if(request.form['update'] == 'Update'):
-						linewriter.writerow([name,room,id,state,row['Picture'],keywords])
+						linewriter.writerow([room,row['Name'],row['State'],row['Picture'],row['Caption']])
 					else:
 						continue
 				else:

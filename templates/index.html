@@ -17,20 +17,31 @@
         <br>
         <img src="https://rxa5014storage.blob.core.windows.net/quiz1/s.jpg" style="width: 200px; height: 200px; margin-left: 40%; margin-bottom: 10%;" alt="No Image found">
         <form action="/takedata" , method="POST" , method = "GET">
-        <label id="labels">Enter a ID to search:</label>
+            <label>Question 6</label>
+            <br>
+        <label id="labels">Enter a Name to search:</label>
         <input type="text" id="SearchBar" name="SearchBar"/>
         <input type="submit" id="button" style="margin-left: 10%;width: 10%;" value="Search"/>
         </form>
         <form action="/roomdata" , method="POST" , method = "GET">
-            <label id="labels">Min Room Number</label>
-            <input type="text" id="searchBar" name="minroom"/>
-            <label id="labels" style="margin-left: 5%;">Max Room Number</label>
-            <input type="text" id="searchBar" name="maxroom"/>
+            <label>Question 8</label>
+            <br>
+            <label id="labels">Enter Room Number</label>
+            <input type="text" id="searchBar" name="roomnum"/>
             <input type="submit" style="margin-left: 10%;width: 10%;" value="Search"/>
         </form>
-        <form action="/searchname" , method = "POST", method="GET">
-            <label id="labels">Enter Name:</label>
+        <form action="/searchstate" , method = "POST", method="GET">
+            <label>Question 7</label>
+            <br>
+            <label id="labels">Enter State:</label>
             <input type="text" id="SearchBar" name="SearchName"/>
+            <input type="submit" style="margin-left: 10%;width: 10%;" value="Search"/>
+        </form>
+        <form action="/searchkey" , method = "POST", method="GET">
+            <label>Question 9</label>
+            <br>
+            <label id="labels">Enter Keyword:</label>
+            <input type="text" id="SearchBar" name="SearchKey"/>
             <input type="submit" style="margin-left: 10%;width: 10%;" value="Search"/>
         </form>
     </body>
